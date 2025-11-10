@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MELÓN SOLUTIONS - Servicios Digitales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 40px 0;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.3);
+            position: relative;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://i.imgur.com/EBTsHbB.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4em;
+            background: linear-gradient(90deg, #00d4ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            text-align: center;
+            color: #fff;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+        }
+
+        .video-section {
+            margin: 40px auto;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4);
+            background: #000;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a0a2e, #0a0a0a);
+            color: #00d4ff;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .services-section {
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 50px;
+            color: #00d4ff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(26, 10, 46, 0.8), rgba(10, 10, 10, 0.9));
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #a855f7, #00d4ff);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(168, 85, 247, 0.5);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .service-card p {
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+
+        .form-section {
+            margin: 60px auto;
+            padding: 40px 20px;
+            max-width: 800px;
+            background: linear-gradient(145deg, rgba(26, 10, 46, 0.6), rgba(10, 10, 10, 0.8));
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-section h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #a855f7;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, #00d4ff, #a855f7);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .about-section {
+            margin: 60px auto;
+            padding: 50px 20px;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: #00d4ff;
+        }
+
+        .about-content {
+            background: linear-gradient(145deg, rgba(26, 10, 46, 0.6), rgba(10, 10, 10, 0.8));
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .about-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #d0d0d0;
+        }
+
+        .trust-badge {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.2), rgba(168, 85, 247, 0.2));
+            border: 2px solid #00d4ff;
+            border-radius: 50px;
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .bottom-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .bottom-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00d4ff, #a855f7);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.6);
+        }
+
+        .bottom-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.8);
+            border-color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-bar {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .bottom-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MELÓN SOLUTIONS</h1>
+            <p class="tagline">Servicios Digitales Innovadores</p>
+        </div>
+    </header>
+
+    <div class="video-section">
+        <div class="video-container">
+            <div class="video-placeholder">
+                📹 Aquí irá tu video<br>
+                <small style="font-size: 0.8em; margin-top: 10px; display: block;">Proporciona el enlace del video para insertarlo</small>
+            </div>
+        </div>
+    </div>
+
+    <section class="services-section" id="servicios">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🌐</span>
+                    <h3>Creación de Sitios Web</h3>
+                    <p>Desarrollamos sitios web modernos, responsivos y optimizados para convertir visitantes en clientes. Diseños personalizados que reflejan la identidad de tu marca con las últimas tecnologías web.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">💬</span>
+                    <h3>ChatBots Inteligentes</h3>
+                    <p>Implementamos chatbots con inteligencia artificial que atienden a tus clientes 24/7. Automatiza respuestas, resuelve dudas y mejora la experiencia del usuario en tu negocio.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">🤖</span>
+                    <h3>Recepcionistas con IA</h3>
+                    <p>Asistentes virtuales inteligentes que gestionan llamadas, agendan citas y atienden consultas de manera profesional. Tu negocio siempre disponible sin importar la hora.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">📱</span>
+                    <h3>Marketing Digital</h3>
+                    <p>Estrategias de marketing digital efectivas para hacer crecer tu presencia online. Gestión de redes sociales, publicidad digital y campañas que generan resultados reales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <h2>Solicita una Cotización</h2>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo *</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono de Contacto *</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+
+            <div class="form-group">
+                <label for="servicio">Servicio de Interés *</label>
+                <select id="servicio" name="servicio" required>
+                    <option value="">Selecciona un servicio</option>
+                    <option value="sitio-web">Creación de Sitios Web</option>
+                    <option value="chatbot">ChatBots Inteligentes</option>
+                    <option value="recepcionista-ia">Recepcionistas con IA</option>
+                    <option value="marketing">Marketing Digital</option>
+                    <option value="varios">Varios Servicios</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="presupuesto">Presupuesto Aproximado *</label>
+                <select id="presupuesto" name="presupuesto" required>
+                    <option value="">Selecciona un rango</option>
+                    <option value="500-1000">$500 - $1,000 USD</option>
+                    <option value="1000-2500">$1,000 - $2,500 USD</option>
+                    <option value="2500-5000">$2,500 - $5,000 USD</option>
+                    <option value="5000+">Más de $5,000 USD</option>
+                    <option value="por-definir">Por Definir</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="empresa">Nombre de tu Empresa (Opcional)</label>
+                <input type="text" id="empresa" name="empresa">
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Cuéntanos sobre tu Proyecto *</label>
+                <textarea id="mensaje" name="mensaje" required placeholder="Describe brevemente qué necesitas y cuáles son tus objetivos..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Enviar Solicitud</button>
+        </form>
+    </section>
+
+    <section class="about-section">
+        <h2>Sobre Nosotros</h2>
+        <div class="about-content">
+            <p>Nuestro equipo liderado por <strong style="color: #00d4ff;">Carlos Jiménez</strong> se especializa en crear soluciones digitales que impulsan el crecimiento de negocios. Con experiencia en desarrollo web y tecnologías de inteligencia artificial, nuestro objetivo es ayudar a empresas y emprendedores a transformar su presencia digital.</p>
+            
+            <p>Cada proyecto es único y merece una atención personalizada. Trabajamos de cerca con nuestros clientes para entender sus necesidades y entregar soluciones que no solo cumplan, sino que superen sus expectativas.</p>
+            
+            <p>La tecnología avanza rápidamente, y nos mantenemos actualizados para ofrecerte las mejores herramientas y estrategias del mercado. Tu éxito es nuestra prioridad.</p>
+            
+            <div class="trust-badge">
+                ✓ Profesionalismo Garantizado | ✓ Soporte Continuo | ✓ Resultados Reales
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-bar">
+        <a href="#servicios" class="bottom-btn" title="Ver Servicios">⚡</a>
+        <a href="tel:+526568208049" class="bottom-btn" title="Llamar">📞</a>
+    </div>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            alert('¡Gracias por tu interés! En breve me pondré en contacto contigo.\n\nDatos recibidos:\n' + 
+                  'Nombre: ' + data.nombre + '\n' +
+                  'Email: ' + data.email + '\n' +
+                  'Teléfono: ' + data.telefono + '\n' +
+                  'Servicio: ' + data.servicio);
+            
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
