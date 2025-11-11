@@ -102,6 +102,35 @@
         .services-section {
             margin: 60px auto;
             padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.7);
+            z-index: 1;
+        }
+
+        .services-section .container {
+            position: relative;
+            z-index: 2;
         }
 
         .services-section h2 {
@@ -109,6 +138,8 @@
             font-size: 2.2em;
             margin-bottom: 50px;
             color: #00d4ff;
+            position: relative;
+            z-index: 2;
         }
 
         .services-grid {
@@ -117,6 +148,8 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .service-card {
@@ -356,6 +389,9 @@
     </div>
 
     <section class="services-section" id="servicios">
+        <video autoplay muted loop playsinline class="services-bg-video">
+            <source src="https://i.imgur.com/zdR6hfC.mp4" type="video/mp4">
+        </video>
         <div class="container">
             <h2>Nuestros Servicios</h2>
             <div class="services-grid">
@@ -381,6 +417,18 @@
                     <span class="service-icon">📱</span>
                     <h3>Marketing Digital</h3>
                     <p>Estrategias de marketing digital efectivas para hacer crecer tu presencia online. Gestión de redes sociales, publicidad digital y campañas que generan resultados reales.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">⚙️</span>
+                    <h3>Automatizaciones con n8n</h3>
+                    <p>Conectamos y automatizamos tus procesos de negocio con n8n. Integra aplicaciones, sincroniza datos y elimina tareas repetitivas para que tu equipo se enfoque en lo importante.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">📲</span>
+                    <h3>Aplicaciones Personalizadas</h3>
+                    <p>Desarrollamos aplicaciones a medida que se adaptan perfectamente a las necesidades de tu negocio. Soluciones escalables y eficientes que impulsan tu productividad y crecimiento.</p>
                 </div>
             </div>
         </div>
@@ -412,6 +460,8 @@
                     <option value="chatbot">ChatBots Inteligentes</option>
                     <option value="recepcionista-ia">Recepcionistas con IA</option>
                     <option value="marketing">Marketing Digital</option>
+                    <option value="automatizaciones">Automatizaciones con n8n</option>
+                    <option value="aplicaciones">Aplicaciones Personalizadas</option>
                     <option value="varios">Varios Servicios</option>
                 </select>
             </div>
