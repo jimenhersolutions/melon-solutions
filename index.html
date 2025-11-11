@@ -153,6 +153,17 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card.animate::before {
+            opacity: 1;
         }
 
         .service-card::before {
@@ -424,9 +435,9 @@
         </div>
     </section>
 
-    <section class="form-section">
+    <section class="form-section" id="formulario">
         <h2>Solicita una Cotización</h2>
-        <form id="contactForm" onsubmit="handleSubmit(event)">
+        <form id="contactForm" action="https://formspree.io/f/mldaealj" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre Completo *</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -498,25 +509,32 @@
     </section>
 
     <div class="bottom-bar">
+        <a href="#formulario" class="bottom-btn" title="Cotizar">📝</a>
         <a href="#servicios" class="bottom-btn" title="Ver Servicios">⚡</a>
-        <a href="tel:+526568208049" class="bottom-btn" title="Llamar">📞</a>
+        <a href="https://wa.me/526568208049" target="_blank" class="bottom-btn" title="WhatsApp">💬</a>
     </div>
 
     <script>
-        function handleSubmit(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData);
-            
-            alert('¡Gracias por tu interés! En breve me pondré en contacto contigo.\n\nDatos recibidos:\n' + 
-                  'Nombre: ' + data.nombre + '\n' +
-                  'Email: ' + data.email + '\n' +
-                  'Teléfono: ' + data.telefono + '\n' +
-                  'Servicio: ' + data.servicio);
-            
-            e.target.reset();
-        }
+        // Animación de aparición de tarjetas de servicios
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                } else {
+                    entry.target.classList.remove('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => observer.observe(card));
+        });
     </script>
 </body>
 </html>
